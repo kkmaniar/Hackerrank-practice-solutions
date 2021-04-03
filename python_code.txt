@@ -1,0 +1,226 @@
+---------------------------------------minion game, vowel----
+
+def minion_game(string):
+    vowels = 'AIEOU'
+    a = (sorted(s[i:j] for i, x in enumerate(s) for j in range(i + 1, len(s) + 1) if x       in vowels))
+    b = len(a)
+    c = (sorted(s[i:j] for i, x in enumerate(s) for j in range(i + 1, len(s) + 1) if x       not in vowels))
+    d = len(c)
+    if len(s) < 1000000:
+        if b > d:
+          print('Kevin {0}'.format(b))
+        elif d > b:
+          print('Stuart {0}'.format(d))
+        else:
+          print('Draw')
+
+
+---------------------------------string/3  valu  ---------------
+
+def merge_the_tools(string, k):
+    for part in zip(*[iter(string)] * k):
+       d = dict()
+       print(''.join([ d.setdefault(c, c) for c in part if c not in d ]))
+
+
+--------------------------calculating total seconds (time zone difference)-----------------
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the time_delta function below.
+def time_delta(t1, t2):
+    from datetime import datetime as dt
+
+
+    fmt = '%a %d %B %Y %H:%M:%S %z'
+    for i in range(int(t)):
+       print(int(abs((dt.strptime(t1, fmt) - 
+                   dt.strptime(t2, fmt)).total_seconds())))
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(raw_input())
+
+    for t_itr in xrange(t):
+        t1 = raw_input()
+
+        t2 = raw_input()
+
+        delta = time_delta(t1, t2)
+
+        fptr.write(delta + '\n')
+
+    fptr.close()
+
+
+-------------------set elements - aray elemets valu---------------------
+
+
+
+n, m = raw_input().split()
+
+sc_ar = raw_input().split()
+
+A = set(raw_input().split())
+B = set(raw_input().split())
+print sum([(i in A) - (i in B) for i in sc_ar])
+
+------------------------------count no of element in list--------------------------------
+
+m = raw_input().split()
+
+sc_ar = raw_input().split()
+from collections import Counter
+
+for i in range(len(sc_ar)):
+    a = sc_ar.count(sc_ar[i])
+    if a == 1:
+        print(sc_ar[i])
+
+
+-----------------------string top 3 repeated word----company logo exampe---------
+
+    s = raw_input()
+    from collections import Counter
+    string = sorted(Counter(s).items(), key= lambda x: (-x[1],x[0]))[:3]
+    print("\n".join(x[0]+" "+str(x[1]) for x in string))
+
+---------------------- Reduce function------------------------------
+
+def product(fracs):
+    
+    t = reduce(lambda x, y : x * y, fracs)# complete this line with a reduce statement
+    return t.numerator, t.denominator
+
+----------------------best sorting trick----------------------
+
+order = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1357902468'
+print(*sorted(input(), key=order.index), sep='')
+
+--------------------repeat no of elemnt in string-------------------
+
+from itertools import groupby
+print(*[(len(list(c)), int(k)) for k, c in groupby(input())])
+
+
+-----------------------probability-----------------
+
+from itertools import combinations
+
+N = int(input())
+L = input().split()
+K = int(input())
+
+C = list(combinations(L, K))
+F = filter(lambda c: 'a' in c, C)
+print("{0:.3}".format(len(list(F))/len(C)))
+
+--------------------letter vowel even the 2 ----score count----------------
+
+def is_vowel(letter):
+    return letter in ['a', 'e', 'i', 'o', 'u', 'y']
+
+def score_words(words):
+    score = 0
+    for word in words:
+        num_vowels = 0
+        for letter in word:
+            if is_vowel(letter):
+                num_vowels += 1
+        if num_vowels % 2 == 0:
+            score = score + 2
+        else:
+            score = score + 1
+    return score
+
+----------------------------Door mate------------------------
+
+if __name__ == '__main__':
+        N, M = map(int, input().split(" "))
+
+        for i in range(N):
+                pattern = ".|."
+                if i < (N-1)/2:
+                        print((pattern * (2*i+1)).center(M, "-"))
+                elif i == (N-1)/2:
+                        print("WELCOME".center(M, "-"))
+                else:
+                        print((pattern * (2*(N-1-i)+1)).center(M, "-"))
+
+
+------------------Second Max--------------------------
+
+if __name__ == '__main__':
+    n = int(input())
+    arr = map(int, input().split())
+    
+    sb = set(arr) # remove duplicate elements
+    sb.remove(max(sb)) # remove the max element
+    print(max(sb))
+
+
+-------------------second last name in marksheet------
+
+marksheet = []
+for _ in range(0,int(input())):
+    marksheet.append([input(), float(input())])
+
+second_highest = sorted(list(set([marks for name, marks in marksheet])))[1]
+print('\n'.join([a for a,b in sorted(marksheet) if b == second_highest]))
+
+
+-------------------Average score of student------------------------
+
+if __name__ == '__main__':
+    n = int(input())
+    student_marks = {}
+    for _ in range(n):
+        name, *line = input().split()
+        scores = list(map(float, line))
+        student_marks[name] = scores
+    query_name = input()
+    
+query_scores = student_marks[query_name]
+
+# Sum the scores in the list: total_scores
+total_scores = sum(query_scores)
+from decimal import Decimal
+# Convert the floats to decimals and average the scores: avg
+avg = Decimal((total_scores/3))
+
+# Print the mean of the scores, correct to two decimals
+print(round(avg,2))
+
+
+-----------------------List append/remove/etc...-------------------------
+
+T = int(input().strip())
+
+L = []
+for t in range(T):
+    args = input().strip().split(" ")
+    if args[0] == "append":
+        L.append(int(args[1]))
+    elif args[0] == "insert":
+        L.insert(int(args[1]), int(args[2]))
+    elif args[0] == "remove":
+        L.remove(int(args[1]))
+    elif args[0] == "pop":
+        L.pop()
+    elif args[0] == "sort":
+        L.sort()
+    elif args[0] == "reverse":
+        L.reverse()
+    elif args[0] == "print":
+        print(L)
+
+
+
+
+
+
